@@ -6,17 +6,9 @@ import json
 from flask import Blueprint, request, jsonify
 from flask import current_app as app
 from .models import Hero, db
+from .util import marvel_hash
 bp = Blueprint('api', __name__, url_prefix='/api')
 
-def marvel_hash():
-    ts = str(int(time.time()))
-    m = hashlib.md5()
-    key = ''.join((
-        ts,
-        app.config['PRIVATE_API_KEY'],
-        app.config['PUBLIC_API_KEY']))
-    m.update(key.encode('utf-8'))
-    return ts, m.hexdigest(), app.config['PUBLIC_API_KEY']
 
 @bp.route('/query', methods=('POST',))
 def query():
@@ -30,7 +22,6 @@ def query():
         ts, m_hash, api_key = marvel_hash()        
         hero_name = urllib.parse.quote(hero_name)
         query_url = f"https://gateway.marvel.com/v1/public/characters?ts={ts}&name={hero_name}&hash={m_hash}&apikey={api_key}"
-        
         print(query_url)
         
         with urllib.request.urlopen(query_url) as response:
