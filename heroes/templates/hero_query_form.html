@@ -1,0 +1,43 @@
+{% extends "layout.html" %}
+
+
+{% block content %}
+    <script>
+        $(document).ready(function() {
+            $('form').submit(function (e) {
+                var url = "{{ url_for('api.query') }}"; // send the form data here.
+                $.ajax({
+                    type: "POST",
+                    url: url,
+                    data: $('form').serialize(), // serializes the form's elements.
+                    success: function (data) {
+                        console.log(data)  // display the returned data in the console.
+                    }
+                })
+                    .done(function(data) {
+
+                        console.log(data);
+                        el = "<img src="+data.thumbnail_url+">"
+                        $("ul#heroes").append($("<li>").append(el));
+                    });
+                e.preventDefault(); // block the traditional submission of the form.
+            });
+            // Inject our CSRF token into our AJAX request.
+            $.ajaxSetup({
+                beforeSend: function(xhr, settings) {
+                    if (!/^(GET|HEAD|OPTIONS|TRACE)$/i.test(settings.type) && !this.crossDomain) {
+                        xhr.setRequestHeader("X-CSRFToken", "{{ form.csrf_token._value() }}")
+                    }
+                }
+            })
+        });
+    </script>
+    <h1>Find a Hero</h1>
+    <form id="find">
+        {{ form.csrf_token }}
+        {{ form.hero_name.label }} {{ form.hero_name(size=20) }}
+        <input type="submit" value="Go">
+    </form>
+    <ul id="heroes">
+    </ul>
+{% endblock %}

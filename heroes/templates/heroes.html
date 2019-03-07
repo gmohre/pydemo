@@ -1,0 +1,12 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  {% for hero in heroes %}
+    <ul id="hero.name">
+      <li><img src="{{hero.thumbnail_url}}"/></li>
+	    <li> Hero: {{hero.name}}</li>
+	    <li> ID: {{hero.id}}<li>
+      
+    </ul>
+  {% endfor %}
+{% endblock %}
