@@ -7,6 +7,7 @@ from flask import Blueprint, request, jsonify
 from flask import current_app as app
 from .models import Hero, db
 from .util import marvel_hash
+
 bp = Blueprint('api', __name__, url_prefix='/api')
 
 
