@@ -15,10 +15,11 @@
                     }
                 })
                     .done(function(data) {
-
-                        console.log(data);
-                        el = "<img src="+data.thumbnail_url+">"
-                        $("ul#heroes").append($("<li>").append(el));
+                        if (!data.error) {
+                            console.log(data);
+                            el = "<img src="+data.thumbnail_url+">"
+                            $("ul#heroes").append($("<li>").append(el));
+                        }
                     });
                 e.preventDefault(); // block the traditional submission of the form.
             });

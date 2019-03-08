@@ -8,7 +8,7 @@ class Config(object):
     SECRET_KEY = os.environ['FLASK_KEY']
     
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-    MARVEL_BASE_URL = "https://gateway.marvel.com"d
+    MARVEL_BASE_URL = "https://gateway.marvel.com"
     PRIVATE_API_KEY = os.environ['MARVEL_PRIVATE_KEY']
     PUBLIC_API_KEY = os.environ['MARVEL_PUBLIC_KEY']
     

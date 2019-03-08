@@ -12,9 +12,10 @@ class Hero(db.Model):
     name = db.Column(db.String)
     thumbnail_url = db.Column(db.String())
     
-    def __init__(self, name, thumbnail_url):
+    def __init__(self, name, thumbnail_url, marvel_id):
         self.name = name
         self.thumbnail_url = thumbnail_url
+        self.marvel_id = marvel_id
 
     def __repr__(self):
         return f"<id {self.id}"
