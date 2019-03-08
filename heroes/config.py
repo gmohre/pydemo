@@ -5,11 +5,13 @@ class Config(object):
     DEBUG = False
     TESTING = False
     CSRF_ENABLED = True
-    SECRET_KEY = 'heroesandvillains'
+    SECRET_KEY = os.environ['FLASK_KEY']
+    
     SQLALCHEMY_DATABASE_URI = os.environ['DATABASE_URL']
-    MARVEL_BASE_URL = "https://gateway.marvel.com"
-    PRIVATE_API_KEY = "82792e50dbaaac893d8f71991715f346542ef02c"
-    PUBLIC_API_KEY = "cb70ad466366b1ddfdbdf18bda853d8a"
+    MARVEL_BASE_URL = "https://gateway.marvel.com"d
+    PRIVATE_API_KEY = os.environ['MARVEL_PRIVATE_KEY']
+    PUBLIC_API_KEY = os.environ['MARVEL_PUBLIC_KEY']
+    
 
 
 class ProductionConfig(Config):

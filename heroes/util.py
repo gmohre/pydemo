@@ -1,3 +1,6 @@
+import time
+import hashlib
+
 from flask import current_app as app
 
 def marvel_hash():

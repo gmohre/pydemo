@@ -8,7 +8,8 @@ team_heroes = db.Table('team_heroes', db.metadata,
 class Hero(db.Model):
     __tablename__ = 'heroes'
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String())
+    marvel_id = db.Column(db.Integer)
+    name = db.Column(db.String)
     thumbnail_url = db.Column(db.String())
     
     def __init__(self, name, thumbnail_url):
@@ -21,6 +22,7 @@ class Hero(db.Model):
     def serialize(self):
         return {
             'id': self.id,
+            'marvel_id': self.marvel_id,
             'name': self.name,
             'thumbnail_url': self.thumbnail_url
         }
