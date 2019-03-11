@@ -9,7 +9,7 @@
 <script>
 import axios from 'axios'
 import Hero from './Hero.vue'
-let API_URL = 'http://localhost:5000/heroes'
+let API_URL = 'http://localhost:5000/api/heroes'
 export default {
   name: 'HeroList',
   components: {
@@ -43,7 +43,6 @@ export default {
   watch: {
     bottom (bottom) {
       if (bottom) {
-        console.log('bottom')
         // this.addComic();
       }
     }
