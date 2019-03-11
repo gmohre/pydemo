@@ -16,7 +16,6 @@ def heroes():
 
 @bp.route('/query', methods=('POST',))
 def query():
-    d = json.dumps(request.json)
     d = request.json
     hero_name = d.get('hero_name')
     if not hero_name:

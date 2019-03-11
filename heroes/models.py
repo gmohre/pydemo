@@ -21,9 +21,7 @@ class MarvelQuery(db.Model):
     def _get_marvel_data(self, api, qs):
         ts, m_hash, api_key = marvel_hash()
         if not all((ts, m_hash, api_key)):
-            raise NotFound('Query Data Missing')
-        print(api)
-        print(qs)
+            raise NotFound('API Data Missing')
         query_value = urllib.parse.quote(qs)
         query_url = f"{app.config.get('MARVEL_BASE_URL')}/v1/public/{api}?ts={ts}&{qs}&hash={m_hash}&apikey={api_key}"
         print(query_url)
@@ -37,7 +35,7 @@ class MarvelQuery(db.Model):
             thumbnail = '.'.join(hero_res['thumbnail'].values())
             return dict(name=hero_res['name'], thumbnail_url=thumbnail, marvel_id=hero_res['id'])
         else:
-            raise NotFound('hero')
+            raise NotFound(f"{qs} Hero Not found")
 
 
     def __init__(self, querystring, api):
